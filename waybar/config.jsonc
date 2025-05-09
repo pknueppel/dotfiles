@@ -1,0 +1,181 @@
+// Waybar configuration
+// Written by Patrick Knueppel
+
+{
+    "mode" : "dock",
+    "margin-top" : 5,
+    "modules-left" : [
+        "custom/arch",
+        "hyprland/workspaces",
+        "hyprland/window",
+    ],
+
+    "modules-center" : [
+        "clock",
+    ],
+
+    "modules-right" : [
+        "custom/pacman",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "battery",
+        "group/group-power",
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon} : {windows:.4}",
+        "format-window-separator": " ",
+        "window-rewrite-default": "",
+        "max-length" : 5,
+        "window-rewrite": {
+            "title<.*youtube.*>": "",
+            "class<firefox>": "",
+            "class<firefox> title<.*github.*>": "",
+            "kitty": "",
+            "steam" : "",
+            "thunderbird" : "󰇮",
+	},
+    },
+
+    "hyprland/window" : {
+        "format" : " {class}",
+        "separate-outputs" : true
+    },
+
+    "clock" : {
+        "format": "{:%B %d, %Y (%R)}",
+        "format-alt" : "{:%H:%M}",
+        "tooltip-format" : "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                        "months":     "<span color='#FFD700'><b>{}</b></span>",
+                        "days":       "<span color='#3498DB'><b>{}</b></span>",
+                        "weeks":      "<span color='#E74C3C'><b>W{}</b></span>",
+                        "weekdays":   "<span color='#FF5722'><b>{}</b></span>",
+                        "today":      "<span color='#FFD700'><b><u>{}</u></b></span>"
+                    }
+            },
+
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up", 
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "pulseaudio" : {
+        "format" : "{volume}% {icon}",
+        "format-bluetooth" : "{volume}% {icon}",
+        "format-muted" : "Muted ",
+        "format-icons" : {
+            "headphone": "",
+            "headset": "",
+            "default": ["","", ""],
+
+        },
+        "scroll-step" : 1,
+        "on-click" : "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty pulsemixer",
+        "ignored-sinks" : ["Easy Effects Sink"]
+    },
+
+    "network": {
+        "interface": "wlan0",
+        "format": "{ifname} ",
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "format-disconnected": "Disconnected 󰖪",
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50,
+        "on-click" : "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty nmtui",
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+	"format-connected": " {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click" : "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty bluetui",
+    },
+
+    "group/group-power": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": false,
+        },
+        "modules": [
+            "custom/power", // First element is the "group leader" and won't ever be hidden
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot",
+        ]
+    },
+
+    "custom/quit": {
+        "name" : "quit",
+        "format": "󰗼",
+        "tooltip-format" : "Quit",
+        "on-click": "hyprctl dispatch exit",
+    },
+
+    "custom/lock": {
+        "name" : "lock",
+        "format": "󰍁",
+        "tooltip-format" : "Lock",
+        "on-click": "hyprlock",
+    },
+
+    "custom/reboot": {
+        "name" : "reboot",
+        "format": "󰜉",
+        "tooltip-format" : "Reboot",
+        "on-click": "reboot",
+    },
+
+    "custom/power": {
+        "name" : "cPower",
+        "format": "",
+        "tooltip-format" : "Shutdown",
+        "on-click": "shutdown now",
+    },
+
+    "custom/pacman": {
+        "format": "{} ",
+        "tooltip-format" : "Click to update system",
+        "interval": 3600,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click" : "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty ~/.config/waybar/scripts/update.sh",
+        "signal": 8
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+
+    "custom/arch" : {
+        "format" : "󰣇",
+        "tooltip-format" : "System Information",
+        "on-click" : "hyprctl dispatch exec \"[float ; size 1000 950; center]\" kitty ~/.config/waybar/scripts/fetch.sh",
+    }
+}

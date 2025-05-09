@@ -1,0 +1,117 @@
+* {
+	font-family : JetBrains Mono, monospace;
+
+	/* Set default CSS values to none */
+
+	padding : 0px;
+	margin: 0px;
+	border : none;
+	min-height  : 0;
+	box-shadow : none;
+	text-shadow : none;
+	background : none;
+	transition : none;
+	font-size : 16px;
+}
+
+/* Tooltips */
+
+tooltip {
+	background-color : rgba(0, 0, 0, 0.5);
+	font-weight : bold;
+}
+
+tooltip label {
+	padding : 0.35em;	
+	border-radius : 4px;
+}
+
+#waybar {
+	background-color : transparent;
+	color : #ffffff;
+}
+
+/* modules left */
+
+.modules-left {
+	background-color : rgba(0, 0, 0, 0.0);
+	margin : 0px 1em;
+}
+
+#custom-arch {
+	margin-right : 1em;
+	font-size : 24px;
+}
+
+#workspaces {
+	background-color : #3C3F3A;
+	border-radius : 1rem;
+}
+
+#workspaces button {
+	color : #ffffff;
+	padding : 1px 1em;
+	border-radius : 1rem;
+	transition : all 0.5s; 
+}
+
+#workspaces button:hover {
+	border-bottom : 0.15em solid #FFFFFF;
+}
+
+#workspaces button.active {
+	background-color : #F0E1D2;
+	color : #000000;
+	padding : 0em 1em;
+}
+
+#window {
+	margin : 0px 0.5em;
+}
+
+/* modules center */
+
+.modules-center {
+	font-weight : bold;
+}
+
+#clock:hover {
+	border-bottom : 0.15em solid #FFFFFF;
+	transition : all 0.5s;
+}
+
+/* modules right */
+
+.modules-right {
+	background-color : #2C3E50;
+	border-radius : 1em;
+}
+
+#custom-pacman, #pulseaudio, #bluetooth, #network, #battery, #group-power {
+	padding : 0em 1em;
+}
+
+#custom-pacman {
+	border-radius : 0px 0px 0px 1em;
+}
+
+
+#custom-pacman:hover, #pulseaudio:hover, #bluetooth:hover, #network:hover, #battery:hover {
+	border-bottom : 0.15em solid #FFFFFF;
+	transition : all 0.5s;
+}
+
+#custom-quit, #custom-lock, #custom-reboot, #custom-power {
+	padding : 0em 1em;
+}
+
+#custom-quit:hover, #custom-lock:hover, #custom-reboot:hover, #custom-power:hover {
+	border-bottom : 0.15em solid #FFFFFF;
+	transition : all 0.5s;
+}
+
+#group-power:hover {
+	background-color : #D0021B;
+	border-radius : 1em;
+	transition : all 0.5s
+}
