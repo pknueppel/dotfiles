@@ -1,16 +1,48 @@
-# starship.toml
-# Written by patrick Knueppel
+# Starship config
+# Written by Patrick knueppel
+# https://starship.rs/config/
 
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+command_timeout = 1000
 
-# Inserts a blank line between shell prompts
-add_newline = true
+format = """┌──$os$username$directory$git_branch$git_commit$git_state$git_metrics$git_status
+└>"""
 
-# Replace the '❯' symbol in the prompt with '➜'
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+[os]
+format = '[$symbol](bold white) '
+disabled = false
 
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
+[os.symbols]
+Windows = ' '
+Arch = '󰣇'
+Macos = '󰀵'
+Unknown = '󰠥'
+
+[username]
+style_user = 'yellow bold'
+style_root = 'red bold'
+disabled = false
+show_always = true
+
+[git_branch]
+symbol = ' '
+truncation_length = 4
+truncation_symbol = ''
+style = 'red bold'
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = ' '
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+style = 'red bold'
+
+[git_metrics]
+added_style = 'bold blue'
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
