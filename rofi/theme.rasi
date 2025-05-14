@@ -1,96 +1,142 @@
-/*
-* Rofi configuration
-* Created by Patrick Knueppel
-* Based on sidebar default config
-*/
+/**
+ * ROFI theme
+ * Created by Patrick Knueppel
+ * Based off of Iggy preset by QBall
+ */
 
 * {
-    red:              #D0021B;
-    lightgreen:       rgba ( 136, 204, 34, 100 % );
-    green:            rgba ( 134, 175, 128, 100 % );
     background-color: transparent;
-    lightred:         rgba ( 204, 85, 51, 100 % );
-    blue:             #2C3E50;
-    lightmagenta:     rgba ( 153, 102, 0, 100 % );
-    dark:             rgba ( 28, 28, 28, 100 % );
-    lightblack:       rgba ( 85, 68, 68, 100 % );
-    lightblue:        SkyBlue;
-    black:            rgba ( 61, 53, 42, 100 % );
-    lightwhite:       rgba ( 221, 204, 187, 100 % );
-    cyan:             LightSteelBlue;
-    magenta:          BurlyWood;
-    lightyellow:      rgba ( 255, 167, 93, 100 % );
-    text-color:       rgba ( 255, 238, 221, 100 % );
-    white:            rgba ( 187, 170, 153, 100 % );
-    yellow:           rgba ( 232, 174, 91, 100 % );
-    lightcyan:        LightSteelBlue;
-    highlight:        bold #3C3F3A;
+    text-color:       white;
 }
+
+
 window {
-    width:      40% ;
-    height:     25% ;
-    location:   south;
-    anchor:     south;
-    border:     0px 2px 0px 0px ;
-    text-color: #FFFFFF;
-    border-radius : 0.5em;
+    padding: 1em;
+
+    border-radius: 10px;
+
+    width:  800px; 
+    height: 500px;
+
+    background-color: transparent;
 }
-mode-switcher {
-    padding:          4px ;
-    background-color: var(lightblack);
-    border:           2px 0px 0px ;
-}
-button selected {
-    border-color: var(lightgreen);
-    text-color:   var(lightgreen);
-}
-inputbar {
-    padding:          4px ;
-    background-color: var(blue);
-    text-color:       var(blue);
-    border:           0px 0px 2px ;
-}
+
 mainbox {
-    background-color: rgba ( 28, 28, 28, 93 % );
-    expand:           true;
-    spacing:          1.0000em ;
+    spacing: 0px;
+    children: [inputbar,wrapper-mode-switcher,listview];
 }
+
+element {
+    background: transparent;
+    children: [ element-icon, element-text ];
+}
+element,element-text,element-icon, button {
+    cursor: pointer;
+}
+
+inputbar {
+    margin: 0px 0px 0.5em 0em;
+    spacing: 0.4em;
+    children: [ button-iggy1, entry,overlay,case-indicator, button-iggy2];
+
+}
+
+button-iggy1, button-iggy2 {
+  expand: false;
+  action: "kb-primary-paste";
+  horizontal-align: 0.5;
+}
+button-iggy2 {
+  action: "kb-screenshot";
+}
+
+listview, inputbar, message {
+  padding: 0.1em;  
+  border-color: lightgreen;
+  border-radius: 10px;
+  background-color: black/70%;
+
+  columns: 4;
+  lines:    4;
+}
+
 listview {
-    padding: 0.0000em 0.4000em 0.0000em 1.0000em ;
-    dynamic: false;
-    lines:   0;
+  border:       0px 5px 2px 2px;
+  border-radius: 0px 0px 10px 10px;
 }
-element-text {
-    background-color: inherit;
-    text-color:       inherit;
+
+
+element {
+    border:  0;
+    padding:      0.1em;
+    font:         "Mono 8";
+    orientation: vertical;
 }
-element selected.normal {
-    background-color: var(blue);
+
+element-icon {
+  size: 3em;
 }
-element selected.active {
-    background-color: var(lightblue);
-    text-color:       var(dark);
+
+element  selected {
+  border-color: lightgreen;
+  border:       5px;
+  border-radius: 10px;
+  background-color: lightgreen/20%;
 }
-element selected.urgent {
-    background-color: var(lightred);
-    text-color:       var(dark);
+
+element-text, element-icon {
+  font:             inherit; 
+  horizontal-align: 0.5;
 }
-element normal.active {
-    text-color: var(lightblue);
+
+wrapper-mode-switcher {
+    orientation: horizontal;
+
+    expand:     false;
+    spacing:    0;
+    children: [ icon-ms-ic1, mode-switcher, icon-ms-ic2 ];
 }
-element normal.urgent {
-    text-color: var(lightred);
+icon-ms-ic1 {
+    filename: "go-previous";
+    action: "kb-mode-previous";
 }
-element alternate.active {
-    text-color: var(lightblue);
+icon-ms-ic2 {
+    filename: "go-next";
+    action: "kb-mode-next";
 }
-element alternate.urgent {
-    text-color: var(lightred);
+icon-ms-ic1,icon-ms-ic2 {
+    size: 16;
+    vertical-align: 0.8;
+    expand:        false;
+    border:       0px 0px 5px ;
+    border-color: lightgreen;
 }
-error-message {
-    padding:          1.0000em ;
-    background-color: Red;
-    expand:           true;
-    border-color:     DarkRed;
-    border:           2px ;
+
+mode-switcher {
+    border:  0px;
+    spacing: 0px;
+    expand: true;
 }
+button {
+    text-color: white;
+    border:       0px 0px 5px ;
+    border-color: lightgreen;
+    border-radius:    10px 10px 0 0;
+    background-image: linear-gradient(to bottom, darkgreen/50%, black/70%);
+    horizontal-align: 0.5;
+}
+button selected.normal {
+    text-color: white;
+    margin: 0px;
+    padding: 0px;
+
+    border:       5px 5px 0px ;
+    border-color: lightgreen;
+    border-radius:    10px 10px 0 0;
+    background-image: linear-gradient(to bottom, darkgreen, black/70%);
+}
+
+entry {
+    placeholder: "Search";
+    placeholder-color: darkgrey/30%;
+  }
