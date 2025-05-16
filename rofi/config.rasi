@@ -5,7 +5,7 @@
 */
 
 configuration {
-	font: "monaspace 12";
+	font : "Monaspace Neon Var 12";
 	location: 8;
 	show-icons: true;
 	terminal: "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty";
