@@ -176,6 +176,6 @@
     "custom/arch" : {
         "format" : "󰣇",
         "tooltip-format" : "System Information",
-        "on-click" : "hyprctl dispatch exec \"[float ; size 1000 950; center]\" kitty ~/.config/waybar/scripts/fetch.sh",
+        "on-click" : "hyprctl dispatch exec \"[float; size 10 10; center]\" kitty ~/.config/waybar/scripts/fetch.sh",
     }
 }
