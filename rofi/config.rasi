@@ -1,0 +1,23 @@
+/**
+* Rofi configuration
+* Written by Patrick Knueppel
+* Based off the default configuration
+*/
+
+configuration {
+	font: "monaspace 12";
+	location: 8;
+	show-icons: true;
+	terminal: "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty";
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "theme.rasi"
