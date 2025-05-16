@@ -6,7 +6,7 @@
 
 configuration {
 	font: "monaspace 12";
-	location: 0;
+	location: 8;
 	show-icons: true;
 	terminal: "hyprctl dispatch exec \"[float; size 800 500; center; pin]\" kitty";
 	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
